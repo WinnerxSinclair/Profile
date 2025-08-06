@@ -1,35 +1,239 @@
 @import './base.css';
 
-#app {
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 500;
+  
+  color-scheme: light dark;
+
+  --text-color: #242424;
+  --bg-color: rgb(253, 249, 245);
+  --accent-dark: rgb(17, 19, 46);
+  --accent-light: rgba(17, 19, 46, 0.315);
+
+  --accent-bg: white;
+
+
+  --input-bg: white;
+
+
+  --btn-bg-primary: #f3f4f6;
+  --btn-color-primary: rgba(0, 0, 0, 0.87);
+  --btn-hover-primary: rgba(170, 170, 170, 0.445);
+
+
+  --btn-has-svg-bg: #f3f4f6;
+
+  --svg-fill: black;
+
+  --outline-primary: rgb(0, 0, 0);
+  --outline-thickness: 1px;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root.dark{
+  --text-color: rgba(255, 255, 255, 0.87);
+  --bg-color: #242424;
+  --accent-bg: 	#383838;
+  --input-bg: #2C2C2C;
+  --outline-primary: #444;
+  --btn-bg-primary: #5a5a5a;
+  --btn-has-svg-bg: #444444;
+  --svg-fill: rgba(255, 255, 255, 0.87);
+  --btn-hover-primary: #9c9c9c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background .3s ease, color .3s ease;
+  overflow-wrap: anywhere;
+}
+
+body{
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+ul{
+  
+  list-style-type: disc;
+}
+ul li::marker{
+  color:rgb(255, 170, 41);
+}
+
+/* forms */
+input{
+  border: var(--outline-thickness) solid var(--outline-primary);
+  background: var(--input-bg);
+  color: var(--text-color);
+  padding: .3em;
+  border-radius: .2rem;
+  /* background:rgba(245, 184, 92, 0.096); */
+}
+
+.fs-100 { font-size: 0.75rem; }   /* 12px */
+.fs-200 { font-size: 0.875rem; }  /* 14px */
+.fs-300 { font-size: 1rem; }      /* 16px */
+.fs-400 { font-size: 1.125rem; }  /* 18px */
+.fs-500 { font-size: 1.25rem; }   /* 20px */
+.fs-600 { font-size: 1.5rem; }    /* 24px */
+.fs-700 { font-size: 1.875rem; }  /* 30px */
+.fs-800 { font-size: 2.25rem; }   /* 36px */
+.fs-900 { font-size: 3rem; }      /* 48px */
+
+fieldset{
+  border:none;
+}
+textarea{
+  padding: .7rem;
+  resize:none;
+}
+
+#app{
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+input[type="checkbox"]{
+  scale: 1.2;
+  margin-top: .2rem;
+  margin-left: .5rem;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+/* flex */
+.flex{
+  display:flex;
+}
+.wrap{
+  flex-wrap: wrap;
+}
+.jc{
+  justify-content: center;
+}
+.ac{
+  align-items: center;
+}
+.jsb{
+  justify-content: space-between;
+}
+.grow{
+  flex-grow: 1;
+}
+.col{
+  flex-direction: column;
+}
+.gap{
+  gap: 1rem;
+}
+.gap-0{
+  gap: .2rem;
+}
+.gap-4{
+  gap: 2rem;
+}
+/* buttons */
+button {
+  border:none;
+  padding: 0.5em;
+  background-color: var(--btn-bg-primary); 
+ 
+  color: inherit;
+  border-radius: 9999px; 
+  font-weight: 500;
+  font-family: sans-serif;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: background 0.2s ease;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+button:has(svg){
+  background-color: var(--btn-has-svg-bg);
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+button:hover {
+  background-color: var(--btn-hover-primary);
 }
+
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none; 
+}
+
+
+/* text */
+.tac{
+  text-align:center;
+}
+
+
+/* positioning */
+.rel{
+  position: relative;
+}
+.abs{
+  position: absolute;
+}
+
+
+/* margin */
+
+.m0a{
+  margin: 0 auto;
+}
+.mt-3{
+  margin-top: 1rem;
+}
+.m0{
+  margin: 0;
+}
+
+
+/* padding */
+.pad{
+  padding: 1rem;
+}
+
+
+.fs-300{
+  font-size: 2rem;
+}
+
+/* display */
+
+.hidden{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}
+
+svg{
+  fill: var(--svg-fill);
+}
+
+/* headings */
+
+h2{
+  font-weight: 700;
+  font-size: 2rem;
+  font-family:'Courier New', Courier, monospace;
+}
+
+h3{
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+

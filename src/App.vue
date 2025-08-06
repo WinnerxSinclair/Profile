@@ -1,85 +1,50 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+    <div class="header-title-wrap">
+      <img src="https://images.unsplash.com/photo-1745990652119-f13cced69b7c?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      <div>
+        <h1>Project Portfolio</h1>
+        <div>by Jonathan Malise</div>
+      </div>
     </div>
+    <p>Hi, I'm Jonathan. I enjoy web development blah blah blah blah blah blah blah
+      blah blah blah blah blah blah blahblah blah blah blah blah blah blah
+    </p>
   </header>
 
   <RouterView />
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+header{
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+  width: fit-content;
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgb(66, 64, 64);
+  padding: 1rem;
+  border-radius: 1rem;
+  color:rgb(240, 240, 240);
 }
-
-nav {
-  width: 100%;
-  font-size: 12px;
+header img{
+  width: 200px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+header p{
+  max-width: 66ch;
+  font-size: 1.2rem;
   text-align: center;
-  margin-top: 2rem;
 }
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.header-title-wrap{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
 }
 </style>
