@@ -198,6 +198,14 @@ button:disabled {
   margin: 0;
 }
 
+pre.shiki{
+  padding: 1.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  tab-size: 2;
+  border-radius: 1rem;
+}
 
 /* padding */
 .pad{

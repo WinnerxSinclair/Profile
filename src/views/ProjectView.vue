@@ -20,12 +20,12 @@
         <div>
           <h3>Frontend</h3>
           <div class="flex gap ac">
-            <!-- <Logo v-for="tech in projectData.tech.frontend.icons" :key="tech" :svgName="tech" /> -->
+          
             <a 
               v-for="tech in projectData.tech.frontend.icons" :key="tech" 
               :href="logoMap[tech].link"
               target="_blank"
-              class="flex ac"
+      
             >
               <img class="tech-logo" :src="logoMap[tech].logo" alt="">
             </a>
@@ -55,9 +55,28 @@
         </div>
       </AlternatingWrapper>
     </section>
-  </div>
+    <div class="challenges">
+      <section>
+        <h2>Challenges</h2>
+        <div v-for="(challenge, i) in projectData.challenges" :key="i">
+          <h3>Challenge #{{ i+1 }}: {{ challenge.heading }}</h3>
+          <p>{{ challenge.problem }}</p>
+          <h4>Solution</h4>
 
-  <div>{{ projectData }}</div>
+          <div v-for="(solution, i) in challenge.solution" :key="i">
+            <p>{{ solution.summary }}</p>
+            <div v-if="solution.code">
+              <div></div>
+              <div v-if="solution.code.caption" v-html="solution.code.caption"></div>
+              <div v-if="solution.code.codeHtml" v-html="solution.code.codeHtml"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div v-html="projectData.video_demo"></div>
+    
+  </div>
 </template>
 
 <script setup>
@@ -113,5 +132,12 @@ li{
 }
 .tech-logo{
   width: 40px;
+}
+.challenges{
+  width: clamp(350px, 100%, 75ch);
+}
+h4{
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 </style>

@@ -4,7 +4,7 @@
 <script setup>
 
 const props = defineProps({
-  image: File,
+  image: String,
   mode: String
 })
 </script>
@@ -16,7 +16,6 @@ const props = defineProps({
   0 1px 2px rgba(0,0,0,0.24);
   flex-shrink: 0;
   border-radius: 1rem;
-  aspect-ratio: 9/16;
 }
 
 .horizontal{
