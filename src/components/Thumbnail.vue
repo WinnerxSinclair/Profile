@@ -20,7 +20,7 @@ const props = defineProps({
 }
 
 .project{
-  max-width: min(100%, 950px);
+  max-width: min(100%, 750px);
 }
 
 .home{

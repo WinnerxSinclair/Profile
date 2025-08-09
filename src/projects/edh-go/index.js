@@ -11,6 +11,7 @@ export const projectPageData = {
   logo,
   home,
   subtitle: 'Android Magic: The Gathering Life Counter application',
+  repo: 'https://github.com/WinnerxSinclair/edh-go',
   overview: [
     {
       heading: '',
@@ -25,17 +26,18 @@ export const projectPageData = {
     }
   ],
   
-  tech: {
-    frontend: {
+  tech: [
+    {
+      heading: 'Frontend',
       summary: `I've never done mobile development but I am very familiar with web dev. This is why I chose to use
                 Quasar and its integration of Capacitor.`,
       icons: ['Quasar', 'Vue', 'JavaScript', 'Pinia']
     },
-    backend: {
+    {
+      heading: 'Backend',
       summary: `There is no backend for edh-go. The core features necessary for a solid life counter do not require it.`
     }
-
-  },
+  ],
   slides: [
     { 
       name: 'Default',

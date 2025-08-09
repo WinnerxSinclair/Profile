@@ -16,7 +16,7 @@ const props = defineProps({
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-top: 5rem;
+  
   flex-wrap: wrap-reverse;
 }
 .row-reverse{

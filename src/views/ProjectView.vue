@@ -4,7 +4,13 @@
       <img class="logo" :src="projectData.logo" alt="">
       <h1 class="big-title">{{ projectData.title }}</h1>
     </div>
-    <div class="subtitle">{{ projectData.subtitle }}</div>
+    <div class="subtitle fs-400">{{ projectData.subtitle }}</div>
+    <div class="flex jc ac gap">
+      <a class="links" :href="projectData.repo" target="_blank">
+        <span>Visit Repo</span>
+        <img class="icon" src="../assets/techLogos/GitHub_White.svg" alt="">
+      </a>
+    </div>
     
     <Thumbnail :image="projectData.home" mode="horizontal" />
     <div class="info">
@@ -17,56 +23,47 @@
       </section>
       <section>
         <h2>Architecture</h2>
-        <div>
-          <h3>Frontend</h3>
-          <div class="flex gap ac">
-          
+        <div v-for="tech in projectData.tech" :key="tech.heading">
+          <h3>{{ tech.heading }}</h3>
+          <div class="flex gap ac">        
             <a 
-              v-for="tech in projectData.tech.frontend.icons" :key="tech" 
-              :href="logoMap[tech].link"
-              target="_blank"
-      
+              v-for="techIcon in tech.icons" :key="techIcon" 
+              :href="logoMap[techIcon].link"
+              target="_blank"      
             >
-              <img class="tech-logo" :src="logoMap[tech].logo" alt="">
+              <img class="tech-logo" :src="logoMap[techIcon].logo" :alt="`${techIcon} Logo`">
             </a>
           </div>
-          <p v-html="projectData.tech.frontend.summary"></p>
-        </div>
-        <div>
-          <h3>Backend</h3>
-          <div class="flex gap">
-            <Logo v-for="tech in projectData.tech.backend.icons" :key="tech" :svgName="tech" />
-            
-          </div>
-          <p v-html="projectData.tech.backend.summary"></p>
+          <p v-html="tech.summary"></p>
         </div>
       </section>
     </div>
     <section class="features">
       <h2>Features</h2>
-      <AlternatingWrapper v-for="(slide, i) in projectData.slides" :key="slide.name" :index="i">
-        <Thumbnail :image="slide.media.image" :mode="slide.media.mode" />
-        <div class="pad">
-          <h3>{{ slide.name }}</h3>
-          <p>{{ slide.overview }}</p>
-          <ul>
-            <li v-for="(feature, i) in slide.features" :key="i">{{ feature }}</li>
-          </ul>
-        </div>
-      </AlternatingWrapper>
+      <div class="flex col slide-wrapper">
+        <AlternatingWrapper v-for="(slide, i) in projectData.slides" :key="slide.name" :index="i">
+          <Thumbnail :image="slide.media.image" :mode="slide.media.mode" />
+          <div class="pad slide-info">
+            <h3>{{ slide.name }}</h3>
+            <p>{{ slide.overview }}</p>
+            <ul>
+              <li v-for="(feature, i) in slide.features" :key="i">{{ feature }}</li>
+            </ul>
+          </div>
+        </AlternatingWrapper>
+      </div>
     </section>
     <div class="challenges">
       <section>
         <h2>Challenges</h2>
-        <div v-for="(challenge, i) in projectData.challenges" :key="i">
+        <div class="challenge-wrapper" v-for="(challenge, i) in projectData.challenges" :key="i">
           <h3>Challenge #{{ i+1 }}: {{ challenge.heading }}</h3>
           <p>{{ challenge.problem }}</p>
-          <h4>Solution</h4>
+          <h4 class="mt-3">Solution</h4>
 
-          <div v-for="(solution, i) in challenge.solution" :key="i">
+          <div class="solution-wrapper" v-for="(solution, i) in challenge.solution" :key="i">
             <p>{{ solution.summary }}</p>
             <div v-if="solution.code">
-              <div></div>
               <div v-if="solution.code.caption" v-html="solution.code.caption"></div>
               <div v-if="solution.code.codeHtml" v-html="solution.code.codeHtml"></div>
             </div>
@@ -74,9 +71,9 @@
         </div>
       </section>
     </div>
-    <section>
-      <h2>Video Demo</h2>
-      <video controls muted  width="350">
+    <section class="video">
+      <h2 class="tac">Video Demo</h2>
+      <video class="mt-3" controls muted  >
         <source :src="projectData.video_demo" type="video/mp4" />
       </video>
     </section>  
@@ -110,6 +107,7 @@ onMounted(async () => {
 .outermost-wrap{
   margin-top: 2rem;
   padding: 1rem;
+  --section-space: 5rem;
 }
 .big-title{
   font-size: 3rem;
@@ -123,11 +121,14 @@ onMounted(async () => {
 p{
   font-size: 18px;
 }
-h3{
-  margin-top: 1rem;
+
+.features,
+.challenges,
+.video{
+  margin-top: var(--section-space);
 }
-.features{
-  
+.features > h2{
+  text-align: center;
 }
 ul{
   font-size: 1.2rem;
@@ -145,4 +146,33 @@ h4{
   font-size: 1.3rem;
   font-weight: bold;
 }
+.slide-info{
+  flex-basis: 400px;
+}
+.slide-wrapper{
+  gap: 5rem;
+}
+.challenge-wrapper + .challenge-wrapper{
+  margin-top: 3rem;
+}
+.solution-wrapper + .solution-wrapper{
+  margin-top: 1rem;
+}
+
+.icon{
+  width: 30px;
+  margin-left: 1rem;
+}
+.links{
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: rgb(247, 247, 247);
+  border-radius: 9em;
+  background: rgba(27, 27, 27, 0.89);
+  padding: .2em .5em;
+  cursor: pointer;
+}
+
 </style>
