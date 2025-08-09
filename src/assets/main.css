@@ -99,8 +99,6 @@ textarea{
 }
 
 #app{
-  max-width: 1280px;
-  margin: 0 auto;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 input[type="checkbox"]{

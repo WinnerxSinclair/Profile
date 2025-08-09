@@ -6,7 +6,7 @@
     </div>
     <div class="subtitle">{{ projectData.subtitle }}</div>
     
-    <img :src="projectData.home" alt="">
+    <Thumbnail :image="projectData.home" mode="horizontal" />
     <div class="info">
       <section>
         <h2>Overview</h2>
@@ -74,8 +74,12 @@
         </div>
       </section>
     </div>
-    <div v-html="projectData.video_demo"></div>
-    
+    <section>
+      <h2>Video Demo</h2>
+      <video controls muted  width="350">
+        <source :src="projectData.video_demo" type="video/mp4" />
+      </video>
+    </section>  
   </div>
 </template>
 
@@ -105,6 +109,7 @@ onMounted(async () => {
 }
 .outermost-wrap{
   margin-top: 2rem;
+  padding: 1rem;
 }
 .big-title{
   font-size: 3rem;

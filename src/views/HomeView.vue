@@ -2,12 +2,8 @@
   <main>
     <h2 class="tac fs-800">Projects</h2>
     <div>
-      <div 
-        class="flex project-wrapper" 
-        v-for="(project,i) in projectData" :key="project.title"
-        :class="{'row-reverse': i % 2 !== 0}"
-      >
-        <Thumbnail :image="project.thumbnail" />
+      <AlternatingWrapper v-for="(project,i) in projectData" :key="project.title" :index="i"> 
+        <Thumbnail :image="project.thumbnail" widthClass="home" />
         <div class="project-info">
           <div class="flex ac gap">
             <img class="logo" :src="project.logo" alt="">
@@ -18,11 +14,11 @@
           <p class="fs-500 mt-3">{{ project.description }}</p>
           <div class="flex gap mt-3">
             <RouterLink :to="`/project/${project.title}`" class="details-btn">Details</RouterLink>
-
+  
             <a v-if="project.demo_url" :href="project.demo_url" target="_blank" class="demo-btn">Demo</a>
           </div>
         </div>
-      </div>
+      </AlternatingWrapper>      
     </div>
   </main>
 </template>
@@ -30,7 +26,7 @@
 <script setup>
 import { ref } from 'vue'
 import Thumbnail from '@/components/Thumbnail.vue'
-import logo from '../assets/path19.png'
+import AlternatingWrapper from '@/components/AlternatingWrapper.vue'
 
 import knouns_tn from '../assets/knouns/knouns_tn.png'
 import knouns_logo from '../assets/knouns/knouns_logo.png'
@@ -101,24 +97,16 @@ const projectData = [
 
 
 <style scoped>
-.thumbnail{
-  width: 60%;
-  box-shadow:   0 1px 3px rgba(0,0,0,0.12),
-  0 1px 2px rgba(0,0,0,0.24);
-  flex-shrink: 0;
-  border-radius: 1rem;
-}
+
 .project-info{
   padding: 1rem;
   padding-top:3rem;
+  flex-shrink: 1;
+  flex-grow: 0;
+  flex-basis: 400px;
 }
-.project-wrapper{
-  gap: 2rem;
-  margin-top: 5rem;
-}
-.row-reverse{
-  flex-direction:row-reverse;
-}
+
+
 
 .logo{
   width: 45px;
@@ -149,7 +137,7 @@ a{
   background: rgb(138, 138, 238);
 }
 
-h3{
+/* h3{
   flex-grow: 1;
-}
+} */
 </style>

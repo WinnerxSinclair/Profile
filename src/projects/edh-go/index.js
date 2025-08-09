@@ -3,7 +3,9 @@ import logo from './media/edhgo_logo.png'
 import home from './media/edhgo_tn.png'
 import counters from './media/counters.png'
 import settings from './media/settings.png'
-import { codeToHtml } from 'shiki'
+
+import demo_vid from './media/demo_vid.mp4'
+
 export const projectPageData = {
   title: 'edh-go',
   logo,
@@ -242,5 +244,5 @@ export const projectPageData = {
       ]
     }
   ],
-  video_demo: `<iframe width="560" height="315" src="https://www.youtube.com/embed/QP7-rziFUd0?si=IGlOigimVhNSSX8b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>` 
+  video_demo: demo_vid
 }
