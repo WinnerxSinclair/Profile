@@ -1,0 +1,96 @@
+import logo from './media/gg_logo.png'
+import home from './media/gg_tn.png'
+import events from './media/events.png'
+import admin from './media/admin.png'
+import about from './media/about.png'
+
+// import demo_vid from './media/demo_vid.mp4'
+
+export const projectPageData = {
+  title: 'Good Game',
+  logo,
+  home,
+  subtitle: 'Fullstack web app for local game store',
+  repo: 'https://github.com/StanPham/Good-Game-App',
+  demo: 'https://goodgame-testdev.web.app/',
+  overview: [
+    {
+      heading: '',
+      text: `During my last semester of university, my Systems Analysis class was assigned a semester long
+      project of building something useful for a local business. My team landed a gig with Good Game, a tabletop
+      gaming store. We were tasked with building a website for them from the ground up. This was my first introduction
+      to web dev, so this project holds a special place in my heart.`,
+    },
+    {
+      heading: 'My Role',
+      text: `Every team member was tasked with reaching out to local businesses. It happened that
+      Good Game was one of my contacts, so I naturally fell into the role of keeping contact and
+      scheduling meetings with them. For development, I was tasked with coding up most of the frontend.`
+    }
+    
+
+  ],
+  
+  tech: [
+    {
+      heading: 'Frontend',
+      summary: `This project was my first introduction to everything: Vue, JavaScript, CSS, HTML, etc.`,
+      icons: ['Vue', 'JavaScript']
+    },
+    {
+      heading: 'Backend',
+      summary: `We used Firebase for everything: Firestore, Storage, Auth`,
+      icons: ['Firebase']
+    }
+  ],
+  slides: [
+    { 
+      name: 'Home',
+      media: {
+        image: home,
+        mode: ''
+      }, 
+      overview: 'The home page needs to stand out and show the most important thing: events',
+      features: [
+        'Huge carousel of notable events',
+        'Card programmatically displaying the soonest next event',
+        'Card to reserve tables for events',
+        "Card displaying Good Game's Facebook, their largest social media"
+      ]           
+    },
+    {
+      name: 'Events Page',
+      media: {
+        image: events
+      },
+      features: [
+        'Chronological list of upcoming events',
+        'Shows current month and next month',
+        'Admins can easily manipulate the list from the admin page'      
+      ]
+    },
+    {
+      name: 'About Page',
+      media: {
+        image: about
+      },
+      features: [
+        'Show contact, hours, and socials',
+        'Interactable Google Maps iframe widget of location'
+      ]
+    },
+    {
+      name: 'Admin Page',
+      media: {
+        image: admin
+      },
+      features: [
+        'Add, edit, and delete events',
+        'Edit the home page carousel',
+        'Manage table reservations'
+      ]
+    }
+
+  ],
+
+}

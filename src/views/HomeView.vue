@@ -1,20 +1,22 @@
 <template>
-  <header>
-    <div class="header-title-wrap">
-      <img src="https://images.unsplash.com/photo-1745990652119-f13cced69b7c?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-      <div>
-        <h1>Project Portfolio</h1>
-        <div>by Jonathan Malise</div>
-      </div>
-    </div>
-    <p>Hi, I'm Jonathan. I enjoy web development blah blah blah blah blah blah blah
-      blah blah blah blah blah blah blahblah blah blah blah blah blah blah
-    </p>
-  </header>
-
   <main>
+    <header>
+      <div class="header-title-wrap">
+        <img src="../assets/WS.webp" alt="">
+        <div>
+          <h1>Project Portfolio</h1>
+          <div>by Jonathan Malise</div>
+        </div>
+      </div>
+      <p class="pad">Hi, I'm Jonathan. I aspire to be a web developer. I enjoy all things frontend and backend.
+        I'm most famililiar with Vue, JavaScript, Node, Express, and MongoDB, but I can pick up new tech
+        quickly while enjoying the learning process. Check out some of my projects below.
+      </p>
+    </header>
+
     <h2 class="tac fs-800">Projects</h2>
-    <div>
+
+    <div class="slide-wrapper flex col">
       <AlternatingWrapper v-for="(project,i) in projectData" :key="project.title" :index="i"> 
         <Thumbnail :image="project.thumbnail" widthClass="home" />
         <div class="project-info">
@@ -26,7 +28,7 @@
           
           <p class="fs-500 mt-3">{{ project.description }}</p>
           <div class="flex gap mt-3">
-            <RouterLink :to="`/project/${project.title}`" class="details-btn">Details</RouterLink>
+            <RouterLink :to="`/project/${project.slug}`" class="details-btn">Details</RouterLink>
   
             <a v-if="project.demo_url" :href="project.demo_url" target="_blank" class="demo-btn">Demo</a>
           </div>
@@ -64,7 +66,8 @@ const projectData = [
     context driven translations and explanations with AI.`,
     thumbnail: knouns_tn,
     logo: knouns_logo,
-    demo_url: 'https://knouns-prod.web.app'
+    demo_url: 'https://knouns-prod.web.app',
+    slug: 'K-nouns'
   },
   { 
     title: 'edh-go',
@@ -73,7 +76,8 @@ const projectData = [
     thumbnail: edhgo_tn,
     logo: edhgo_logo,
     github_url: 'https://github.com/WinnerxSinclair/edh-go',
-    demo_url: null
+    demo_url: null,
+    slug: 'edh-go'
   },
   { 
     title: 'Good Game',
@@ -83,7 +87,8 @@ const projectData = [
     thumbnail: gg_tn_2,
     logo: gg_logo,
     github_url: 'https://github.com/StanPham/Good-Game-App/tree/main',
-    demo_url: 'https://goodgame-testdev.web.app/'
+    demo_url: 'https://goodgame-testdev.web.app/',
+    slug: 'good-game'
   },
   { 
     title: 'Pomo Timer',
@@ -93,24 +98,48 @@ const projectData = [
     thumbnail: pomo_tn,
     logo: pomo_logo,
     github_url: 'https://github.com/WinnerxSinclair/Pomodoro',
-    demo_url: 'https://winnerxsinclair.github.io/Pomodoro/'
+    demo_url: 'https://winnerxsinclair.github.io/Pomodoro/',
+    slug: 'pomo-timer'
   },
-  { 
-    title: 'Crypto Charts',
-    description: `Crypto website that shows the top 100 coins and their respetive charts.
-    Utilizes CoinGecko API to fetch data and ApexCharts to display it.`,
-    thumbnail: crypto_tn,
-    logo: crypto_logo,
-    github_url: 'https://github.com/WinnerxSinclair/Crypto',
-    demo_url: 'https://crypto-36b3e.web.app/'
-  },
+  // { 
+  //   title: 'Crypto Charts',
+  //   description: `Crypto website that shows the top 100 coins and their respetive charts.
+  //   Utilizes CoinGecko API to fetch data and ApexCharts to display it.`,
+  //   thumbnail: crypto_tn,
+  //   logo: crypto_logo,
+  //   github_url: 'https://github.com/WinnerxSinclair/Crypto',
+  //   demo_url: 'https://crypto-36b3e.web.app/'
+  // },
 ]
 </script>
 
 
 
 <style scoped>
-
+header{
+  width: fit-content;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+header img{
+  width: 150px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+header p{
+  max-width: 66ch;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.header-title-wrap{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
 .project-info{
   padding: 1rem;
   padding-top:3rem;
@@ -118,8 +147,6 @@ const projectData = [
   flex-grow: 0;
   flex-basis: 400px;
 }
-
-
 
 .logo{
   width: 45px;
@@ -149,8 +176,7 @@ a{
 .demo-btn{
   background: rgb(138, 138, 238);
 }
-
-/* h3{
-  flex-grow: 1;
-} */
+.slide-wrapper{
+  gap: 5rem;
+}
 </style>

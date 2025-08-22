@@ -5,6 +5,8 @@ import Pinia from '../assets/techLogos/Pinia.svg'
 import Quasar from '../assets/techLogos/Quasar.svg'
 import Vite from '../assets/techLogos/Vite.svg'
 import Vue from '../assets/techLogos/Vue.svg'
+import Express from '../assets/techLogos/Express.svg'
+import Firebase from '../assets/techLogos/Firebase.svg'
 
 
 export const logoMap = {
@@ -43,4 +45,14 @@ export const logoMap = {
     name: 'Vite',
     link: 'https://vite.dev/'
   },
+  'Express': {
+    logo: Express,
+    name: 'Express',
+    link: 'https://expressjs.com/'
+  },
+  'Firebase': {
+    logo: Firebase,
+    name: 'Firebase',
+    link: 'https://firebase.google.com/'
+  }
 }

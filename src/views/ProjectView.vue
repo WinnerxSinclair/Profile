@@ -1,91 +1,103 @@
 <template>
-  <div class="flex col ac gap outermost-wrap" v-if="projectData">
-    <div class="flex gap ac">
-      <img class="logo" :src="projectData.logo" alt="">
-      <h1 class="big-title">{{ projectData.title }}</h1>
-    </div>
-    <div class="subtitle fs-400">{{ projectData.subtitle }}</div>
-    <div class="flex jc ac gap">
-      <a class="links" :href="projectData.repo" target="_blank">
-        <span>Visit Repo</span>
-        <img class="icon" src="../assets/techLogos/GitHub_White.svg" alt="">
-      </a>
-    </div>
-    
-    <Thumbnail :image="projectData.home" mode="horizontal" />
-    <div class="info">
-      <section>
-        <h2>Overview</h2>
-        <div v-for="(section, i) in projectData.overview" :key="i">
-          <h3>{{ section.heading }}</h3>
-          <p v-html="section.text"></p>
-        </div>
-      </section>
-      <section>
-        <h2>Architecture</h2>
-        <div v-for="tech in projectData.tech" :key="tech.heading">
-          <h3>{{ tech.heading }}</h3>
-          <div class="flex gap ac">        
-            <a 
-              v-for="techIcon in tech.icons" :key="techIcon" 
-              :href="logoMap[techIcon].link"
-              target="_blank"      
-            >
-              <img class="tech-logo" :src="logoMap[techIcon].logo" :alt="`${techIcon} Logo`">
-            </a>
-          </div>
-          <p v-html="tech.summary"></p>
-        </div>
-      </section>
-    </div>
-    <section class="features">
-      <h2>Features</h2>
-      <div class="flex col slide-wrapper">
-        <AlternatingWrapper v-for="(slide, i) in projectData.slides" :key="slide.name" :index="i">
-          <Thumbnail :image="slide.media.image" :mode="slide.media.mode" />
-          <div class="pad slide-info">
-            <h3>{{ slide.name }}</h3>
-            <p>{{ slide.overview }}</p>
-            <ul>
-              <li v-for="(feature, i) in slide.features" :key="i">{{ feature }}</li>
-            </ul>
-          </div>
-        </AlternatingWrapper>
+ 
+    <div class="flex col ac gap outermost-wrap" v-if="projectData">
+      <RouterLink to="/" class="home-link">
+        <img src="../assets/logos/home.svg" alt="">
+        <span class="fs-500">Home</span>
+      </RouterLink>
+      <div class="flex gap ac">
+        <img class="logo" :src="projectData.logo" alt="">
+        <h1 class="big-title">{{ projectData.title }}</h1>
       </div>
-    </section>
-    <div class="challenges">
-      <section>
-        <h2>Challenges</h2>
-        <div class="challenge-wrapper" v-for="(challenge, i) in projectData.challenges" :key="i">
-          <h3>Challenge #{{ i+1 }}: {{ challenge.heading }}</h3>
-          <p>{{ challenge.problem }}</p>
-          <h4 class="mt-3">Solution</h4>
-
-          <div class="solution-wrapper" v-for="(solution, i) in challenge.solution" :key="i">
-            <p>{{ solution.summary }}</p>
-            <div v-if="solution.code">
-              <div v-if="solution.code.caption" v-html="solution.code.caption"></div>
-              <div v-if="solution.code.codeHtml" v-html="solution.code.codeHtml"></div>
+      <div class="subtitle fs-400">{{ projectData.subtitle }}</div>
+      <div class="flex jc ac gap">
+        <a class="links" :href="projectData.repo" target="_blank">
+          <span>Visit Repo</span>
+          <img class="icon" src="../assets/techLogos/GitHub_White.svg" alt="">
+        </a>
+        <a v-if="projectData.demo" class="links site-link" :href="projectData.demo" target="_blank">
+          <span>Visit Site</span>
+          <img class="icon" src="../assets/logos/link.svg" alt="">
+        </a>
+      </div>
+      
+      <Thumbnail :image="projectData.home" width-class="hero" />
+      <div class="info">
+        <section>
+          <h2>Overview</h2>
+          <div v-for="(section, i) in projectData.overview" :key="i">
+            <h3>{{ section.heading }}</h3>
+            <p v-html="section.text"></p>
+          </div>
+        </section>
+        <section>
+          <h2>Architecture</h2>
+          <div v-for="tech in projectData.tech" :key="tech.heading">
+            <h3>{{ tech.heading }}</h3>
+            <div class="flex gap ac">        
+              <a 
+                v-for="techIcon in tech.icons" :key="techIcon" 
+                :href="logoMap[techIcon]?.link"
+                target="_blank"      
+              >
+                <img class="tech-logo" :src="logoMap[techIcon]?.logo" :alt="`${techIcon} Logo`">
+              </a>
+            </div>
+            <p v-html="tech.summary"></p>
+          </div>
+        </section>
+      </div>
+      <section class="features">
+        <h2>Features</h2>
+        <div class="flex col slide-wrapper">
+          <AlternatingWrapper v-for="(slide, i) in projectData.slides" :key="slide.name" :index="i">
+            <Thumbnail :image="slide.media.image" :mode="slide.media.mode" />
+            <div class="pad slide-info">
+              <h3>{{ slide.name }}</h3>
+              <p>{{ slide.overview }}</p>
+              <ul>
+                <li v-for="(feature, i) in slide.features" :key="i">{{ feature }}</li>
+              </ul>
+            </div>
+          </AlternatingWrapper>
+        </div>
+      </section>
+      <div class="challenges" v-if="projectData.challenges">
+        <section>
+          <h2>Challenges</h2>
+          <div class="challenge-wrapper" v-for="(challenge, i) in projectData.challenges" :key="i">
+            <h3>Challenge #{{ i+1 }}: {{ challenge.heading }}</h3>
+            <p>{{ challenge.problem }}</p>
+            <h4 class="mt-3">Solution</h4>
+  
+            <div class="solution-wrapper" v-for="(solution, i) in challenge.solution" :key="i">
+              <p>{{ solution.summary }}</p>
+              <div v-if="solution.code">
+                <div v-if="solution.code.caption" v-html="solution.code.caption"></div>
+                <div v-if="solution.code.codeHtml" v-html="solution.code.codeHtml"></div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
+      <section class="video" v-if="projectData.video_demo">
+        <h2 class="tac">Video Demo</h2>
+        <video class="mt-3 video-fluid" controls muted preload="metadata" >
+          <source :src="projectData.video_demo" type="video/mp4" />
+        </video>
+      </section>  
     </div>
-    <section class="video">
-      <h2 class="tac">Video Demo</h2>
-      <video class="mt-3" controls muted  >
-        <source :src="projectData.video_demo" type="video/mp4" />
-      </video>
-    </section>  
-  </div>
+ 
+  <div v-if="!projectData" class="tac fs-500">Loading Project...</div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, watch, nextTick } from 'vue'
 import { loadProject } from '@/helpers/projectLoader.js';
 import { logoMap } from '@/helpers/logoMap.js'
+import { useRoute } from 'vue-router';
+const route = useRoute();
 
-import Logo from '@/components/Logo.vue';
 import Thumbnail from '@/components/Thumbnail.vue';
 import AlternatingWrapper from '@/components/AlternatingWrapper.vue';
 const props = defineProps({
@@ -94,9 +106,18 @@ const props = defineProps({
 
 const projectData = ref(null);
 
-onMounted(async () => {
-  projectData.value = await loadProject(`${props.projectSlugName}`)
-})
+
+watch(() => route.params.projectSlugName, async (newSlug) => {
+  projectData.value = null;
+  projectData.value = await loadProject(newSlug);
+
+  await nextTick();
+  window.scrollTo({
+    top: 0,
+    behavior: "instant"
+  });
+}, { immediate: true });
+
 
 </script>
 
@@ -105,7 +126,7 @@ onMounted(async () => {
   width: 100px;
 }
 .outermost-wrap{
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding: 1rem;
   --section-space: 5rem;
 }
@@ -121,7 +142,12 @@ onMounted(async () => {
 p{
   font-size: 18px;
 }
-
+.video-fluid{
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 80vh;
+}
 .features,
 .challenges,
 .video{
@@ -149,6 +175,9 @@ h4{
 .slide-info{
   flex-basis: 400px;
 }
+.slide-info li{
+  font-size: 1.4rem;
+}
 .slide-wrapper{
   gap: 5rem;
 }
@@ -158,7 +187,21 @@ h4{
 .solution-wrapper + .solution-wrapper{
   margin-top: 1rem;
 }
-
+.home-link{
+  color: black;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  border-radius: 9em;
+  background: white;
+  border: 1px solid rgba(19, 19, 19, 0.459);
+  padding: .2em .4em;
+}
+.home-link:hover{
+  background: rgb(224, 224, 224);
+}
 .icon{
   width: 30px;
   margin-left: 1rem;
@@ -174,5 +217,16 @@ h4{
   padding: .2em .5em;
   cursor: pointer;
 }
+.links:hover{
+  background: rgba(32, 32, 32, 0.685);
+}
+.site-link{
+  background: rgb(228, 204, 140);
+  color:black;
+}
+.site-link:hover{
+  background: rgba(228, 205, 140, 0.685);
+}
+
 
 </style>

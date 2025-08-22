@@ -21,8 +21,11 @@ const props = defineProps({
 
 .project{
   max-width: min(100%, 750px);
+  
 }
-
+.hero{
+  max-width: min(100%, 1000px);
+}
 .home{
   width: clamp(350px, 100%, 700px);
 }

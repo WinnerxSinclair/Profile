@@ -3,7 +3,6 @@ import { codeToHtml } from "shiki";
 import outdent from 'outdent'
 
 export async function loadProject(slug){
-  console.log(`../projects/${slug}/index.js`);
   const importer = projectImports[`../projects/${slug}/index.js`];
   if(!importer) throw new Error('unknown project');
   const mod = await importer();
